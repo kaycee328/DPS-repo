@@ -25,4 +25,4 @@ The Divorce Prediction System is a project designed to predict the likelihood of
 
    ```bash
    git clone https://github.com/your-username/divorce-prediction-system.git
-   cd divorce-prediction-system
+   cd .....
