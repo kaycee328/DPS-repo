@@ -1,0 +1,26 @@
+{% extends 'users/base.html'%}
+{% block title%}login page{% endblock %}
+{% load crispy_forms_tags %}
+{% block navbar%}
+{% endblock navbar%}
+{% block body%}
+    <div class="login-container content-section p-lg-3">
+        <form action="{% url 'login'%}" method="post">
+            {% csrf_token %}
+            <div class="h4 pt-1">Login Here</div><hr class="mt-1 mb-lg-2">
+            <fieldset class="form-group h3 font-weight-normal">
+                <legend class="mb-0 login-items">
+                    {{ form|crispy }}
+                </legend>
+            </fieldset>
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-info">Log In</button>
+            </div>
+        </form>
+        <div class="pt-2">
+            <small class="text-muted login-text-muted">
+                Don't have an account? <a href="{% url 'register'%}" class="ml-2">Register here</a>
+            </small>
+        </div>
+    </div>
+{% endblock body%}

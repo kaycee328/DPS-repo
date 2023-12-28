@@ -1,0 +1,20 @@
+{% extends 'mainapp/index.html'%}
+{% block title%}prediction page{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="page-container">
+        <form action="{% url 'predict'%}" method="post" class="form-container">
+            {% csrf_token %}
+            <fieldset class="form-group h3 font-weight-normal">
+                <legend class="border-bottom mb-0">
+                    {{count}}{{ form|crispy }}
+                </legend>
+            </fieldset>
+            <div class="form-group">
+                <button type="submit" value = "update" class="d-block btn btn-lg btn-success mt-4 w-50 mx-auto">Log In</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock content %}

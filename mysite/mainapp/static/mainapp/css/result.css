@@ -1,0 +1,42 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-image: url("../images/rose-3063283_1280.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.container{
+    position: relative;
+    width: 100%;
+}
+
+.container h1{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    width: 70%;
+    margin: 5% auto;
+}
+
+.home-link{
+    /* background-color: aliceblue; */
+    background: transparent;
+    width: 15%;
+    /* margin: 10px auto; */
+    margin-top: 10px;
+    border-radius: 1rem;
+    text-align: center;
+    padding: 5px;
+}
+
+.home-link a{
+    text-decoration: none;
+}

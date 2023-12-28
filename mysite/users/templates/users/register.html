@@ -1,0 +1,27 @@
+{% extends 'users/base.html'%}
+{% block title%}sign-ip here{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block navbar%}
+{% endblock navbar%}
+{% block body%}
+    <div class="register-container content-section p-lg-1">
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <div class="h5 p-0">Register your account</div><hr class="mt-0 mb-lg-2">
+            <fieldset class="form-group font-weight-normal mb-1">
+                <legend class="h6 mb-0">
+                    {{ form|crispy }}
+                </legend>
+            </fieldset>
+            <div class="form-group mb-0">
+                <button type="submit" class="btn btn-outline-info mb-0">Sign Up</button>
+            </div>
+        </form>
+        <div class="mt-0">
+            <small class="text-muted pt-0 mb-2">
+                Already have an account? <a href="{% url 'login'%}" class="ml-2">Sign In</a>
+            </small>
+        </div>
+    </div>
+{% endblock %}

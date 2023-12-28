@@ -1,0 +1,78 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.welcome-container{
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.473), rgba(0, 0, 0, 0.658)), url('../images/couple-1850073_1280.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.navbar{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.welcome-body{
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.welcome-text{
+    color: antiquewhite;
+    font-weight: 700;
+}
+
+.navbar-brand{
+    color: rgb(220, 235, 235);
+}
+
+.links a{
+    color: aliceblue;
+    display: inline-block;
+    text-decoration: none;
+    transition: all;
+}
+
+.links{
+    background-color: rgb(16, 122, 122);
+    cursor: pointer;
+    transition: all;
+}
+
+.links:hover{
+    transition-duration: 300ms;
+    transition-timing-function: ease;
+    background-color: rgb(14, 33, 49);
+}
+
+.links:hover > a{
+    color: rgb(108, 199, 194);
+}
+
+.page-container{
+    width: 100%;
+    padding: 10%;
+}
+
+.form-container{
+    width: 70%;
+    margin: 0 auto;
+    border: 1px solid red;
+    padding: 3%;
+}
+
+.form-group legend{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}

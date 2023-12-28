@@ -1,0 +1,115 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-image: url("../images/couple-1868557_1280.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    /* height: 100vh; */
+}
+
+.username{
+    color: rgb(255, 255, 255);
+    font-size: 35px;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.container{
+    padding: 20px;
+    position: relative;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 70%;
+    border-radius: 1rem;
+    background-color: blueviolet;
+    margin: 3% auto;
+}
+
+form{
+    padding: 15px;
+    margin: 15px auto;
+    /* width: 55%; */
+    background: transparent;
+    /* background: linear-gradient(rgba(53, 51, 54, 0.9), rgba(38, 44, 53, 0.9)); */
+    border-radius: 10px;
+}
+
+table{
+    padding-top: 10px;
+    margin-top: 2rem;
+}
+
+h1{
+    color: rgb(249, 253, 253);
+    font-size: 23px;
+    font-weight: bold;
+    text-align: left;
+    padding-left: 5px;
+}
+
+h4{
+    color: rgb(190, 192, 192);
+    padding-left: 5px;
+    text-align: left;
+    font-size: 17px;
+}
+
+tr{
+    margin-bottom: 35px;
+    border: none;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+td{
+    padding: 5px;
+    color: wheat;
+    /* background-color: rgb(199, 199, 199); */
+    /* border: 1px solid black; */
+}
+
+button{
+    background-color: rgb(16, 80, 80);
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, 50%);
+}
+
+
+.left input{
+    width: 80px;
+    text-align: center;
+}
+
+.home-link{
+    background: transparent;
+    width: 15%;
+    margin-top: 10px;
+    border-radius: 1rem;
+    text-align: center;
+    padding: 5px;
+}
+
+.home-link a{
+    text-decoration: underline;
+    color: bisque;
+    font-style: italic;
+
+}

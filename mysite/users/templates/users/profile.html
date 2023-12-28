@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'users/css/profile.css'%}?{% now 'U' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="content-container">
+        <header class="header">
+            <div class="h3"> PROFILE </div>
+            <ul class="nav-ul">
+                <li><a href="{% url 'main-home' %}">Back to homepage</a></li>
+            </ul>
+        </header>
+        <div class="body-content body-content1">
+            <img class="account-img rounded-circle" src="{{ user.profile.image.url }}" alt="profile pic">
+        </div>
+        <div class="body-content body-content2">
+            <div class="media-body pt-1">
+                <h2 class="account-body ml-lg-4 text-uppercase"><em>{{request.user.username}}'s profile</em></h2>
+                <p class="text-secondary ml-4">{{request.user.email}}</p>
+            </div>
+        </div>
+    </div>
+    <!-- THE JAVASCRIPT LINKS AND FILES -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

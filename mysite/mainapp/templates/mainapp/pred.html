@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'mainapp/css/predict.css'%}?{% now 'U' %}">
+</head>
+<body>
+    <div class="container">
+        <p class="username"> HELLO {{request.user.username}}</p>
+        <form action="{% url 'result' %}" method="post">
+            {% csrf_token %}
+            <h1>
+                PLEASE FILL THIS FORM WITH VALUES RANGING FROM 0 - 4
+            </h1>
+            <h4>
+                0 = No, 1 = Seldom, 2 = Averagely, 3 = Frequently, 4 = Yes
+            </h4>
+            <table>
+                {% for question in questions%}
+                <tr>
+                    <td class="right">{{question}} </td>
+                    <td class="left"> <input type="number" name="n1" min="0" max="4" required></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <button type="submit" id="submit">Submit</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

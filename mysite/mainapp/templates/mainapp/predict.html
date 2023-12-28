@@ -1,0 +1,243 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'mainapp/css/predict.css'%}?{% now 'U' %}">
+</head>
+<body>
+    <div class="container">
+        <span class="home-link"><a href="{% url 'main-home' %}">Return to homepage</a></span>
+        <p class="username"> HELLO {{request.user.username}}</p>
+        <form action="{% url 'predict' %}" method="post">
+            {% csrf_token %}
+            <h1>
+                PLEASE FILL THIS FORM WITH VALUES RANGING FROM 0 - 4
+            </h1>
+            <h4>
+                0 = No, 1 = Seldom, 2 = Averagely, 3 = Frequently, 4 = Yes
+            </h4>
+            <table>
+                <tr>
+                    <td class="right">When one of you apologizes after a discussion goes in a bad direction, does it extend? </td>
+                    <td class="left"> <input type="number" name="n1" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you ignore each other's differences at the end of the day?</td>
+                    <td class="left"> <input type="number" name="n2" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you and your partner take discussions to correct your issues? </td>
+                    <td class="left"> <input type="number" name="n3" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you and your partner contact each other after an argument?  </td>
+                    <td class="left"> <input type="number" name="n4" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Is time spent with your partner special? </td>
+                    <td class="left"> <input type="number" name="n5" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you have time for each other at home?  </td>
+                    <td class="left"> <input type="number" name="n6" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Are you and your partner like strangers at home? </td>
+                    <td class="left"> <input type="number" name="n7" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you enjoy holidays with your partner? </td>
+                    <td class="left"> <input type="number" name="n8" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you enjoy travelling with your partner? </td>
+                    <td class="left"> <input type="number" name="n9" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you and your partner have similar goals? </td>
+                    <td class="left"> <input type="number" name="n10" min="0" max="4" required></td>
+                </tr>
+                <!-- <tr>
+                    <td class="right">Do you think that you and your partner can live in harmony? </td>
+                    <td class="left"> <input type="number" name="n11" min="0" max="4" required></td>
+                </tr> -->
+                <tr>
+                    <td class="right">Do you think that you and your partner can live in harmony? </td>
+                    <td class="left"> <input type="number" name="n11" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you and your partner have similar values in terms of personal freedom? </td>
+                    <td class="left"> <input type="number" name="n12" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you both have similar goals for your children or friends? </td>
+                    <td class="left"> <input type="number" name="n13" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you both have similar dreams on how you want to live? </td>
+                    <td class="left"> <input type="number" name="n14" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do the both of you have similar ideas on what love should be? </td>
+                    <td class="left"> <input type="number" name="n15" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you share the same views about being happy in life? </td>
+                    <td class="left"> <input type="number" name="n16" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you have similar ideas on what marriage should be? </td>
+                    <td class="left"> <input type="number" name="n17" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you have similar ideas about how roles should be in marriage? </td>
+                    <td class="left"> <input type="number" name="n18" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do the both of you have similar values in trust? </td>
+                    <td class="left"> <input type="number" name="n19" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you know what your partner likes? </td>
+                    <td class="left"> <input type="number" name="n20" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you know how to take care of your partner when they are sick? </td>
+                    <td class="left"> <input type="number" name="n21" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you know your partner's favourite meal? </td>
+                    <td class="left"> <input type="number" name="n22" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Can you tell when your partner is stressed? </td>
+                    <td class="left"> <input type="number" name="n23" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you have knowledge of your partner's inner world? </td>
+                    <td class="left"> <input type="number" name="n24" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you know your partner's basic concerns? </td>
+                    <td class="left"> <input type="number" name="n25" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you know what stresses your partner? </td>
+                    <td class="left"> <input type="number" name="n26" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you know your partner's hopes and wishes? </td>
+                    <td class="left"> <input type="number" name="n27" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you know your partner very well? </td>
+                    <td class="left"> <input type="number" name="n28" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you know your partner's friend circle? </td>
+                    <td class="left"> <input type="number" name="n29" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you feel aggressive when you argue with your partner? </td>
+                    <td class="left"> <input type="number" name="n30" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">When discussing with your partner do you use vulgar expressions? </td>
+                    <td class="left"> <input type="number" name="n31" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Can you use negative statements about your partner's personality during your discussions? </td>
+                    <td class="left"> <input type="number" name="n32" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Can you use offensive expressions during your discussions? </td>
+                    <td class="left"> <input type="number" name="n33" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Can you insult your partner during your discussions? </td>
+                    <td class="left"> <input type="number" name="n34" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you humiliate your partner when you argue? </td>
+                    <td class="left"> <input type="number" name="n35" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Is your argument with your partner calm? </td>
+                    <td class="left"> <input type="number" name="n36" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you hate your partner's way of bringing things up? </td>
+                    <td class="left"> <input type="number" name="n37" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you and your partner fight during arguments? </td>
+                    <td class="left"> <input type="number" name="n38" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Are you and your partner already fighting before you know what's going on? </td>
+                    <td class="left"> <input type="number" name="n39" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you lose your calm when talking to your partner about something? </td>
+                    <td class="left"> <input type="number" name="n40" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">When you and your partner are arguing, do you say a word? </td>
+                    <td class="left"> <input type="number" name="n41" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Are you mostly thirsty to calm the environment? </td>
+                    <td class="left"> <input type="number" name="n42" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you think it's good for you to leave home for a while? </td>
+                    <td class="left"> <input type="number" name="n43" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Would you rather stay silent than argue with your partner? </td>
+                    <td class="left"> <input type="number" name="n44" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Even if you are right in the argument, are you thirsty to upset the other side? </td>
+                    <td class="left"> <input type="number" name="n45" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">When you argue with your partner, do you remain silent because you are afraid of not being able to control your anger? </td>
+                    <td class="left"> <input type="number" name="n46" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you feel like you are right during your discussions with you partner? </td>
+                    <td class="left"> <input type="number" name="n47" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Do you have anything to do with what your partner accused you of? </td>
+                    <td class="left"> <input type="number" name="n48" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Are you the one who is wrong about the problems at home? </td>
+                    <td class="left"> <input type="number" name="n49" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Would you hesitate to tell anyone about your partner's inadequacies? </td>
+                    <td class="left"> <input type="number" name="n50" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">When you discuss your partner, do you tell people about their inadequacies? </td>
+                    <td class="left"> <input type="number" name="n51" min="0" max="4" required></td>
+                </tr>
+                <tr>
+                    <td class="right">Lastly, are you afraid of telling people about your partner's inadequacies? </td>
+                    <td class="left"> <input type="number" name="n52" min="0" max="4" required></td>
+                </tr>
+            </table>
+            <button type="submit" name="submit" id="submit" value= "submit">Submit</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
