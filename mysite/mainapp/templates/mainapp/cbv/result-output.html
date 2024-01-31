@@ -13,10 +13,14 @@
         <a href="{% url 'home' %}">Go to homepage</a>
     </div>
     <div class="container">
-        {% if status %}
-            <h1> This couple is {{status}} </h1>
+        {% if result %}
+            {% if result.divorce_status == True %}
+                <h1> This couple is Divorced </h1>
+            {% elif result.divorce_status == False %}
+                <h1> This couple is Not Divorced </h1>
+            {% endif %}
         {% else %}
-            <h1> You haven't filled the form in <a href="{% url 'predict' %}"> <u>this link</u></a></h1>
+            <h1> You haven't filled the form in <a href="{% url 'test' %}"> <u>this link</u></a></h1>
         {% endif %}
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

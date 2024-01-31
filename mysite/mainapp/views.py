@@ -1,66 +1,81 @@
+# from typing import Any
+import pandas as pd
+import numpy as np
+from typing import Any
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
-import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LogisticRegression
 from .forms import DivorcePredictionForm
 from django.contrib.auth.decorators import login_required
 from sklearn.model_selection import train_test_split
-from .models import Dps
+from .models import Customer, Divorce
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin 
+from django.views.generic import DetailView, ListView, UpdateView, FormView, CreateView, TemplateView, DeleteView
+from django.contrib.auth.views import LoginView, LogoutView
+from django.urls import reverse_lazy
 # from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
-@login_required
-def home(request):
-    return render(request, 'mainapp/index.html')
+
+# UPDATED VERSION OF DPS CODE
+class HomePage(LoginRequiredMixin, TemplateView):  # HOMEPAGE VIEW
+    template_name = 'mainapp/cbv/homepage.html'
 
 @login_required
-def predict(request):
-        if request.method == "POST":
-            result = None  # Initialize result
-            pd.set_option('display.max_columns', None)
-            my_data = pd.read_csv('dps.csv')
-            user = request.user
-            print(str(user).upper())
-            print(request.POST.get('submit'))
+def predictionform(request):
+    pd.set_option('display.max_columns', None)
+    my_data = pd.read_csv('dps.csv')
+    # print(str(request.user).upper())
 
-            x = my_data.drop(columns='Divorce')
-            y = my_data.drop(my_data.iloc[:, 0:-1], axis=1)
-            x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25)
+    x = my_data.drop(columns='Divorce')
+    y = my_data['Divorce']
+    # y = my_data.drop(my_data.iloc[:, 0:-1], axis=1)
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25)
 
-            descision_tree_model = DecisionTreeClassifier()
-            descision_tree_model.fit(x_train, y_train)
+    decision_tree_model = DecisionTreeClassifier()
+    decision_tree_model.fit(x_train, y_train)
 
-            # if request.POST.get('submit'):
-            values = [request.POST[f'n{i}'] for i in range(1, 53)]
-            # print(values)
+    if request.method == 'POST': 
+        delete_user_model = Divorce.objects.filter(user=request.user).delete()
 
-            predictions = descision_tree_model.predict([values])
-            # Retrieve or create the user's Dps object
-            user_dps = Dps.objects.filter(current_user=user).first()
+        user_model = Divorce(user=request.user)
 
-            if user_dps is None:
-                # If the user_dps does not exist, create a new one
-                user_dps = Dps(current_user=user)
-                user_dps.save()
-            # Now user_dps holds the existing or newly created Dps object
+        if not delete_user_model:
+            user_model = Divorce(user=request.user)
+        
+        form = DivorcePredictionForm(request.POST)
 
+        if form.is_valid():
+            print('FORM VALID')
+            print(form.is_valid())
 
-            # Update the 'divorced' field based on the prediction
-            user_dps.divorced = predictions == [1]
-            user_dps.save()
-            if predictions == [1]:
-                result = "DIVORCED!"
-            else:
-                result = "NOT DIVORCED!"
-            context = {'status': result}
+            vals = [form.cleaned_data[f'n{i}'] for i in range(1, 53)]
+
+            for i, val in enumerate(vals, start=1):
+                attribute_name = f'n{i}'
+                setattr(user_model, attribute_name, val)
+                print(getattr(user_model, attribute_name))
+
             
-            return render(request, 'mainapp/result.html', context)
-        return render(request, 'mainapp/predict.html')
+            # Make predictions and update the Divorce object
+            predictions = decision_tree_model.predict([vals])
+            user_model.divorce_status = predictions == 1
 
+            user_model.save()
+        return redirect('output')
+        
+    else:
+        form = DivorcePredictionForm()
 
-@login_required
-def result(request):
-    return render(request, 'mainapp/result.html')
+    return render(request, 'mainapp/cbv/testing.html', {'form': form})
 
+class ResultView(TemplateView):     # RESULT PAGE VIEW
+    template_name = 'mainapp/cbv/result-output.html'
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+         context =  super().get_context_data(**kwargs)
+         context['result'] = Divorce.objects.filter(user = self.request.user).first()
+         return context
+    

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    {% load crispy_forms_tags %}
+    
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <legend>DPS</legend>
+        <div class="form">
+            {{ form|crispy }}
+        </div>
+        <button type="submit" name="submit" value="submit" id="btn">Submit</button>
+    </form>
+
+
+    <script>
+        inputs = document.querySelectorAll('.numberinput')
+        button = document.getElementById('btn')
+
+        btn.addEventListener('click', function(e){
+            console.log('CLICKED!!')
+        })
+
+        for(let i = 0; i < inputs.length; i++){
+            inputs[i].type = 'number'
+            inputs[i].max = 4
+            inputs[i].min = 0
+            inputs[i].value = 3
+        }
+    </script>
+</body>
+</html>
+
